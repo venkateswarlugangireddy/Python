@@ -20,6 +20,10 @@ fg = folium.FeatureGroup(name="My Map")
 for lat, lon, elv in zip(lat,lon, elv):
     fg.add_child(folium.CircleMarker(location=[lat, lon], popup=str(elv), radius=6, color=color_producer(elv)))
 
+fg.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').read(),
+                            style_function=lambda x: {'fillColor':'green' if x['properties']['POP2005'] < 10000000
+                            else 'orange' if 10000000 <= x['properties']['POP2005'] < 20000000 else 'red'}))
+
 #for coordinates in [[38.2, -99.1], [38.5, -99.4]]:
 #    fg.add_child(folium.Marker(location=coordinates, popup="Hi I am a Marker", icon=folium.Icon(color="green")))
 #fg.add_child(folium.Marker(location=[38.0, -99.2], popup="Hi I am a Marker", icon=folium.Icon(color="red")))
