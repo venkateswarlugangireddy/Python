@@ -1,3 +1,4 @@
+'''
 
 #Exercise: Creating and Displaying Variables
 first_name = "venkat"
@@ -43,3 +44,62 @@ for identifier in range(count):
   }
   with open(f"./new/recipt-{identifier}.json", 'w') as f:
     json.dump(content, f)
+
+
+message = input("please enter the message: ")
+count = input("enter the count value: ").strip()
+
+if count:
+  count = int(count)
+else:
+  count = 1
+
+def echo_fun(message, count):
+  while count >= 1:
+    print(message)
+    count -= 1
+
+echo_fun(message, count)
+
+'''
+'''
+def get_file_name():
+  file_name=input("please enter file name")
+  return file_name
+
+file_name = get_file_name()
+
+print(file_name)
+
+with open(file_name, 'w') as f:
+  eof = False
+  lines=[]
+
+  while not eof:
+    line=input()
+    if line.strip():
+      lines.append(f"{line}\n")
+    else:
+      eof = True
+
+  f.writelines(lines)
+  
+'''
+'''
+import argparse
+
+parser = argparse.ArgumentParser(description='test file')
+parser.add_argument('file_name', help="file name")
+parser.add_argument('line_number', type=int, help='line number')
+args = parser.parse_args()
+
+try:
+  lines = open(args.file_name, 'r').readlines()
+  line = lines[args.line_number - 1]
+except IndexError:
+  print("line index error")
+else:
+  print(line)
+  '''
+
+  
